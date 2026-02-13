@@ -1,14 +1,14 @@
 {
-  "name": "react-media-viewer",
+  "name": "react-page-viewer",
   "version": "0.1.0",
   "description": "Headless, extensible media viewer for React. PDFs, images, video, audio, and YouTube.",
   "author": "Nico Knoll",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/nicoknoll/react-media-viewer.git"
+    "url": "https://github.com/nicoknoll/react-page-viewer.git"
   },
-  "homepage": "https://github.com/nicoknoll/react-media-viewer",
+  "homepage": "https://github.com/nicoknoll/react-page-viewer",
   "keywords": [
     "react",
     "media",

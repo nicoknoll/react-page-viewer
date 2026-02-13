@@ -1,13 +1,15 @@
-# React Media Viewer
+# React Page Viewer
 
 A headless, extensible media viewer for React. Render PDFs, images, video, audio, and YouTube embeds with a unified API. You control the UI — the library handles pages, zoom, scroll, and layout.
+
+![Preview](docs/preview.png)
 
 The plugin system is inspired by [TipTap](https://tiptap.dev/docs/editor/extensions/custom-extensions): each feature (zoom, pagination, drag-to-scroll) is a self-contained plugin that adds commands and reactive storage to the viewer. Compose only what you need.
 
 ## Install
 
 ```sh
-npm install react-media-viewer
+npm install react-page-viewer
 ```
 
 Requires React 19 (or 18 with `use` polyfill). Ships as ESM and CJS.
@@ -15,7 +17,7 @@ Requires React 19 (or 18 with `use` polyfill). Ships as ESM and CJS.
 ## Quick Example
 
 ```tsx
-import { ImagePageReader, useReader, useMediaViewer, useStorage, ZoomPlugin, FitMode } from 'react-media-viewer';
+import { ImagePageReader, useReader, useMediaViewer, useStorage, ZoomPlugin, FitMode } from 'react-page-viewer';
 
 const Viewer = ({ url }: { url: string }) => {
   const reader = useReader(url, ImagePageReader);
@@ -63,7 +65,7 @@ This is the entire integration. There are no wrapper components or required CSS 
 Pass multiple reader classes and the library picks the right one per URL:
 
 ```tsx
-import { READERS, useReader } from 'react-media-viewer';
+import { READERS, useReader } from 'react-page-viewer';
 
 const reader = useReader('https://example.com/photo.jpg', READERS);
 ```
@@ -183,7 +185,7 @@ DownloadPlugin.configure({ url: 'https://example.com/file.pdf' })
 Control whether pages flow vertically or horizontally:
 
 ```tsx
-import { Direction } from 'react-media-viewer';
+import { Direction } from 'react-page-viewer';
 
 const { canvasProps } = useMediaViewer({
   reader,
@@ -244,7 +246,7 @@ class MarkdownPageReader extends BasePageReader {
 Extend `BasePlugin` and use module augmentation for type-safe commands:
 
 ```tsx
-import { BasePlugin } from 'react-media-viewer';
+import { BasePlugin } from 'react-page-viewer';
 
 class FullscreenPlugin extends BasePlugin<{}, boolean> {
   pluginName = 'fullscreen' as const;
@@ -268,7 +270,7 @@ class FullscreenPlugin extends BasePlugin<{}, boolean> {
   }
 }
 
-declare module 'react-media-viewer' {
+declare module 'react-page-viewer' {
   interface ViewerCommands {
     toggleFullscreen(): void;
   }
