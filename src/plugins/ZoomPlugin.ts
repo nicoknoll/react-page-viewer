@@ -140,7 +140,7 @@ export class ZoomPlugin extends BasePlugin<ZoomPluginOptions, number> {
     }
 }
 
-declare module '../MediaViewer' {
+declare module 'react-page-viewer' {
     interface ViewerCommands {
         setZoom(level: number): void;
         getZoom(): number;

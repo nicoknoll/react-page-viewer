@@ -2,7 +2,7 @@ import { Direction, ViewerStorage } from '../MediaViewer';
 import { BasePlugin } from './BasePlugin';
 import { ScrollAnchor } from './PagePlugin';
 
-interface ScrollStorage {
+export interface ScrollStorage {
     dragEnabled: boolean;
     dragging: boolean;
 }
@@ -208,7 +208,7 @@ export class ScrollPlugin extends BasePlugin<ScrollPluginOptions, ScrollStorage>
     }
 }
 
-declare module '../MediaViewer' {
+declare module 'react-page-viewer' {
     interface ViewerCommands {
         enableDrag(): void;
         disableDrag(): void;

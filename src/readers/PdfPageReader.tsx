@@ -3,8 +3,6 @@ import type { PDFPageProxy } from 'pdfjs-dist';
 import { useEffect, useRef } from 'react';
 import { BasePageReader, Page, getExtension } from './BasePageReader';
 
-pdfjsLib.GlobalWorkerOptions.workerSrc = new URL('pdfjs-dist/build/pdf.worker.min.mjs', import.meta.url).toString();
-
 const PdfPageCanvas = ({ page, scale }: { page: PDFPageProxy; scale: number }) => {
     const canvasRef = useRef<HTMLCanvasElement>(null);
 
@@ -38,7 +36,20 @@ export class PdfPageReader extends BasePageReader<PdfRenderOptions> {
         null!;
 
     private async ensurePdf() {
-        if (!this.pdf) this.pdf = await pdfjsLib.getDocument(this.url).promise;
+        if (!this.pdf) {
+            if (!pdfjsLib.GlobalWorkerOptions.workerSrc) {
+                try {
+                    pdfjsLib.GlobalWorkerOptions.workerSrc = new URL(
+                        'pdfjs-dist/build/pdf.worker.min.mjs',
+                        import.meta.url,
+                    ).toString();
+                } catch {
+                    pdfjsLib.GlobalWorkerOptions.workerSrc =
+                        `https://cdn.jsdelivr.net/npm/pdfjs-dist@${pdfjsLib.version}/build/pdf.worker.min.mjs`;
+                }
+            }
+            this.pdf = await pdfjsLib.getDocument(this.url).promise;
+        }
         return this.pdf;
     }
 

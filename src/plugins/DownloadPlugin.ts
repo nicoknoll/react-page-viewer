@@ -26,7 +26,7 @@ export class DownloadPlugin extends BasePlugin<{ url: string; fileName?: string 
     }
 }
 
-declare module '../MediaViewer' {
+declare module 'react-page-viewer' {
     interface ViewerCommands {
         download(fileName?: string): Promise<void>;
     }

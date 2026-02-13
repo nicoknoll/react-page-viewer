@@ -8,6 +8,7 @@ export type { PageContainerProps } from './plugins/BasePlugin';
 export { FitMode, ZoomPlugin } from './plugins/ZoomPlugin';
 export { PagePlugin, ScrollAnchor } from './plugins/PagePlugin';
 export { ScrollPlugin } from './plugins/ScrollPlugin';
+export type { ScrollStorage } from './plugins/ScrollPlugin';
 export { DownloadPlugin } from './plugins/DownloadPlugin';
 
 // Readers

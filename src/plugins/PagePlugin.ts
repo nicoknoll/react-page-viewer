@@ -109,7 +109,7 @@ export class PagePlugin extends BasePlugin<PagePluginOptions, number> {
     };
 }
 
-declare module '../MediaViewer' {
+declare module 'react-page-viewer' {
     interface ViewerCommands {
         setPage(page: number): void;
         getPage(): number;
