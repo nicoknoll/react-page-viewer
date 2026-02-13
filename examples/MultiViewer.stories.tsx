@@ -1,8 +1,8 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { FitMode, READERS, ScrollPlugin, useMediaViewer, useReader, useStorage, ZoomPlugin } from '../src';
+import { FitMode, ScrollPlugin, useMediaViewer, useReader, useStorage, ZoomPlugin } from '../src';
 
 const MultiViewer = ({ urls }: { urls: string[] }) => {
-    const reader = useReader(urls, READERS);
+    const reader = useReader(urls);
     const { viewer, canvasProps, pages, isLoading, error } = useMediaViewer({
         reader,
         plugins: [ZoomPlugin.configure({ initialZoom: FitMode.FIT }), ScrollPlugin.configure({ spaceToDrag: true })],

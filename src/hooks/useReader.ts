@@ -1,11 +1,18 @@
 import { useMemo } from 'react';
 import { BasePageReader, Page, ReaderClass } from '../readers/BasePageReader';
+import { PdfPageReader } from '../readers/PdfPageReader';
+import { ImagePageReader } from '../readers/ImagePageReader';
+import { VideoPageReader } from '../readers/VideoPageReader';
+import { AudioPageReader } from '../readers/AudioPageReader';
+import { YoutubePageReader } from '../readers/YoutubePageReader';
+
+export const DEFAULT_READERS: readonly ReaderClass[] = [PdfPageReader, ImagePageReader, VideoPageReader, AudioPageReader, YoutubePageReader];
 
 export interface ReaderOptions {}
 
 export const useReader = (
     urls: string | string[],
-    readers: ReaderClass | readonly ReaderClass[],
+    readers: ReaderClass | readonly ReaderClass[] = DEFAULT_READERS,
     options: ReaderOptions = {}
 ) => {
     return useMemo(() => {

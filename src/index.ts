@@ -13,14 +13,12 @@ export { DownloadPlugin } from './plugins/DownloadPlugin';
 // Readers
 export { BasePageReader } from './readers/BasePageReader';
 export type { Page, ReaderClass } from './readers/BasePageReader';
-import { PdfPageReader } from './readers/PdfPageReader';
-import { ImagePageReader } from './readers/ImagePageReader';
-import { VideoPageReader } from './readers/VideoPageReader';
-import { AudioPageReader } from './readers/AudioPageReader';
-import { YoutubePageReader } from './readers/YoutubePageReader';
-export { PdfPageReader, ImagePageReader, VideoPageReader, AudioPageReader, YoutubePageReader };
-
-export const READERS = [PdfPageReader, ImagePageReader, VideoPageReader, AudioPageReader, YoutubePageReader] as const;
+export { PdfPageReader } from './readers/PdfPageReader';
+export { ImagePageReader } from './readers/ImagePageReader';
+export { VideoPageReader } from './readers/VideoPageReader';
+export { AudioPageReader } from './readers/AudioPageReader';
+export { YoutubePageReader } from './readers/YoutubePageReader';
+export { DEFAULT_READERS } from './hooks/useReader';
 
 // Hooks
 export { useMediaViewer } from './hooks/useMediaViewer';

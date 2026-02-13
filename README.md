@@ -1,10 +1,10 @@
 # React Page Viewer
 
-A headless, extensible media viewer for React. Render PDFs, images, video, audio, and YouTube embeds with a unified API. You control the UI — the library handles pages, zoom, scroll, and layout.
+A headless, extensible media viewer for React. Render PDFs, images, video, audio, and YouTube embeds with a unified API.
 
 ![Preview](docs/preview.png)
 
-The plugin system is inspired by [TipTap](https://tiptap.dev/docs/editor/extensions/custom-extensions): each feature (zoom, pagination, drag-to-scroll) is a self-contained plugin that adds commands and reactive storage to the viewer. Compose only what you need.
+The plugin system is inspired by [TipTap](https://tiptap.dev/docs/editor/extensions/custom-extensions): each feature (zoom, pagination, drag-to-scroll) is a self-contained plugin that adds commands and reactive storage to the viewer.
 
 ## Install
 
@@ -48,8 +48,6 @@ const Viewer = ({ url }: { url: string }) => {
 };
 ```
 
-This is the entire integration. There are no wrapper components or required CSS — you own the markup.
-
 ## Supported Media
 
 | Type | Reader | Detected extensions |
@@ -62,15 +60,13 @@ This is the entire integration. There are no wrapper components or required CSS 
 
 ### Auto-detection
 
-Pass multiple reader classes and the library picks the right one per URL:
+All built-in readers are used by default:
 
 ```tsx
-import { READERS, useReader } from 'react-page-viewer';
-
-const reader = useReader('https://example.com/photo.jpg', READERS);
+const reader = useReader('https://example.com/photo.jpg');
 ```
 
-`READERS` includes all built-in readers. You can also pass a subset:
+Pass a subset to restrict detection:
 
 ```tsx
 const reader = useReader(url, [ImagePageReader, PdfPageReader]);
