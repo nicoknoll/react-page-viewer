@@ -1,5 +1,9 @@
 # React Page Viewer
 
+[![npm version](https://img.shields.io/npm/v/react-page-viewer)](https://www.npmjs.com/package/react-page-viewer)
+[![npm bundle size](https://img.shields.io/bundlephobia/minzip/react-page-viewer)](https://bundlephobia.com/package/react-page-viewer)
+[![license](https://img.shields.io/npm/l/react-page-viewer)](https://github.com/nicoknoll/react-page-viewer/blob/main/LICENSE)
+
 A headless, extensible media viewer for React. Render PDFs, images, video, audio, and YouTube embeds with a unified API.
 
 ![Preview](docs/preview.png)
