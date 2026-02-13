@@ -10,7 +10,7 @@ import {
     ScrollPlugin,
     PagePlugin,
     DownloadPlugin,
-} from '../src';
+} from 'react-page-viewer';
 
 const ImageViewer = ({ url, urls, horizontal }: { url?: string; urls?: string[]; horizontal?: boolean }) => {
     const reader = useReader(urls ?? url ?? '', ImagePageReader);

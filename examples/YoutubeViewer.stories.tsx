@@ -1,5 +1,13 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { FitMode, YoutubePageReader, useReader, useMediaViewer, useStorage, ZoomPlugin, ScrollPlugin } from '../src';
+import {
+    FitMode,
+    YoutubePageReader,
+    useReader,
+    useMediaViewer,
+    useStorage,
+    ZoomPlugin,
+    ScrollPlugin,
+} from 'react-page-viewer';
 
 const YoutubeViewer = ({ url }: { url: string }) => {
     const reader = useReader(url, YoutubePageReader);

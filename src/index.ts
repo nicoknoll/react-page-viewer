@@ -1,4 +1,5 @@
 // Core
+export { Extendable } from './Extendable';
 export { Direction, MediaViewer } from './MediaViewer';
 export type { ViewerCommands, ViewerStorage, PluginEntry } from './MediaViewer';
 

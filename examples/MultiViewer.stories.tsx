@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { FitMode, ScrollPlugin, useMediaViewer, useReader, useStorage, ZoomPlugin } from '../src';
+import { FitMode, ScrollPlugin, useMediaViewer, useReader, useStorage, ZoomPlugin } from 'react-page-viewer';
 
 const MultiViewer = ({ urls }: { urls: string[] }) => {
     const reader = useReader(urls);

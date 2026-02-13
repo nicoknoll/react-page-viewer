@@ -1,3 +1,4 @@
+import { Extendable } from '../Extendable';
 import { MediaViewer } from '../MediaViewer';
 import { Page } from '../readers/BasePageReader';
 import { CSSProperties } from 'react';
@@ -7,15 +8,15 @@ export interface PageContainerProps {
     style: CSSProperties;
 }
 
-export abstract class BasePlugin<TOptions = object, TStorage = any> {
+export abstract class BasePlugin<TConfigOptions = object, TStorage = any> extends Extendable {
     abstract pluginName: string;
 
     protected viewer: MediaViewer;
-    protected options: TOptions;
+    protected declare options: TConfigOptions;
 
-    constructor(viewer: MediaViewer, options: TOptions) {
+    constructor(viewer: MediaViewer) {
+        super();
         this.viewer = viewer;
-        this.options = options;
     }
 
     abstract addCommands(): Record<string, (...args: any[]) => any>;
@@ -42,8 +43,15 @@ export abstract class BasePlugin<TOptions = object, TStorage = any> {
 
     static configure<T extends typeof BasePlugin<any, any>>(
         this: T,
-        options: ConstructorParameters<T>[1]
-    ): { PluginClass: T; options: ConstructorParameters<T>[1] } {
-        return { PluginClass: this, options };
+        options: T extends abstract new (...args: any[]) => BasePlugin<infer O, any> ? O : never
+    ): T {
+        return super.configure.call(this, options) as T;
+    }
+
+    static extend<T extends typeof BasePlugin<any, any>>(
+        this: T,
+        overrides: Record<string, any>
+    ): T {
+        return super.extend.call(this, overrides) as T;
     }
 }

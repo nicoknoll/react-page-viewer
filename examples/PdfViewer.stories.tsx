@@ -9,7 +9,7 @@ import {
     PagePlugin,
     ScrollPlugin,
     DownloadPlugin,
-} from '../src';
+} from 'react-page-viewer';
 
 const PdfViewer = ({ url }: { url: string }) => {
     const reader = useReader(url, PdfPageReader);

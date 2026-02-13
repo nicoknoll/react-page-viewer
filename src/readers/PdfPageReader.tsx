@@ -27,7 +27,11 @@ export interface PdfRenderOptions {
     scale?: number;
 }
 
-export class PdfPageReader extends BasePageReader<PdfRenderOptions> {
+export interface PdfReaderOptions {
+    workerSrc?: string;
+}
+
+export class PdfPageReader extends BasePageReader<PdfReaderOptions, PdfRenderOptions> {
     static canHandle(url: string): boolean {
         return getExtension(url) === 'pdf';
     }
@@ -39,6 +43,7 @@ export class PdfPageReader extends BasePageReader<PdfRenderOptions> {
         if (!this.pdf) {
             if (!pdfjsLib.GlobalWorkerOptions.workerSrc) {
                 pdfjsLib.GlobalWorkerOptions.workerSrc =
+                    this.options.workerSrc ??
                     `https://cdn.jsdelivr.net/npm/pdfjs-dist@${pdfjsLib.version}/build/pdf.worker.min.mjs`;
             }
             this.pdf = await pdfjsLib.getDocument(this.url).promise;

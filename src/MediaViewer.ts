@@ -4,7 +4,7 @@ import { Page } from './readers/BasePageReader';
 export interface ViewerCommands {}
 export interface ViewerStorage {}
 
-export type PluginEntry = typeof BasePlugin<any, any> | { PluginClass: typeof BasePlugin<any, any>; options: any };
+export type PluginEntry = typeof BasePlugin<any, any>;
 
 export const Direction = {
     VERTICAL: 'vertical',
@@ -28,8 +28,7 @@ export class MediaViewer {
     constructor(pluginEntries: PluginEntry[], direction: Direction = Direction.VERTICAL) {
         this.direction = direction;
         for (const entry of pluginEntries) {
-            const [Ctor, opts] = 'PluginClass' in entry ? [entry.PluginClass, entry.options] : [entry, {}];
-            const plugin = new (Ctor as unknown as new (viewer: MediaViewer, options: any) => BasePlugin)(this, opts);
+            const plugin = new (entry as unknown as new (viewer: MediaViewer) => BasePlugin)(this);
             this.plugins.push(plugin);
             Object.assign(this.commands, plugin.addCommands());
             (this.storage as unknown as Record<string, unknown>)[plugin.pluginName] = plugin.addStorage();

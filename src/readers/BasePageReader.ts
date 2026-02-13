@@ -1,4 +1,5 @@
 import { ReactNode } from 'react';
+import { Extendable } from '../Extendable';
 
 export interface Page<TRenderOptions = object> {
     width: number;
@@ -6,14 +7,32 @@ export interface Page<TRenderOptions = object> {
     render: (options?: TRenderOptions) => ReactNode;
 }
 
-export abstract class BasePageReader<TRenderOptions = object> {
-    constructor(protected url: string) {}
+export abstract class BasePageReader<TConfigOptions = object, TRenderOptions = object> extends Extendable {
+    protected declare options: TConfigOptions;
+
+    constructor(protected url: string) {
+        super();
+    }
+
     abstract getPage(index: number): Promise<Page<TRenderOptions>>;
     abstract getPages(): Promise<Page<TRenderOptions>[]>;
 
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     static canHandle(url: string): boolean {
         return false;
+    }
+
+    static configure<T extends typeof BasePageReader<any, any>>(
+        this: T,
+        options: T extends abstract new (...args: any[]) => BasePageReader<infer O> ? O : never
+    ): T {
+        return super.configure.call(this, options) as T;
+    }
+
+    static extend<T extends typeof BasePageReader<any, any>>(
+        this: T,
+        overrides: Record<string, any>
+    ): T {
+        return super.extend.call(this, overrides) as T;
     }
 }
 

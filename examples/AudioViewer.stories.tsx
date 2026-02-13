@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { AudioPageReader, FitMode, useReader, useMediaViewer, ZoomPlugin } from '../src';
+import { AudioPageReader, FitMode, useReader, useMediaViewer, ZoomPlugin } from 'react-page-viewer';
 
 const AudioViewer = ({ url }: { url: string }) => {
     const reader = useReader(url, AudioPageReader);
